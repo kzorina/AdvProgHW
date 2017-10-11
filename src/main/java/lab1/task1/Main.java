@@ -12,8 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String someVariable = "Cat";
-        alternativeSwitch(someVariable.toLowerCase());
+        String someVariable = "Cat"; //just random variable for switch
+        alternativeSwitch(someVariable.toLowerCase()); //lowercase to standartize input
 
     }
 }

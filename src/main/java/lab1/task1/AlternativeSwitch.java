@@ -8,15 +8,18 @@ import java.util.List;
  */
 public class AlternativeSwitch {
     public static void alternativeSwitch(String parameter){
+
         //To add option into switch just create class that implements AltSwitch,
         //define action() and name() methods and add object of this class to array:
+
         List<AltSwitch> options = new ArrayList<AltSwitch>();
         options.add(new Cat());
         options.add(new Dog());
         options.add(new Bird());
-        boolean used = false;
+
+        boolean used = false; //variable to check if any option fit the request
         for (AltSwitch i: options){
-            if (i.name().equals(parameter)){
+            if (i.name().equals(parameter)){ //compare parameter with class names to decide, which option is now
                 i.action();
                 used = true;
             }
