@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BestScore implements Serializable {
     public List<Score> bestScores = new ArrayList<Score>();
-    private int bestScoreLength = 5;
+    private int bestScoreLength = 5;//how many scores to save
 
     private class Score implements Serializable {
         private Integer score;
@@ -33,17 +33,13 @@ public class BestScore implements Serializable {
     @Override
     public String toString() {
         String mes ="";
-        for (Score i: bestScores){
+        for (Score i: bestScores)
             mes+=i;
-            //System.out.println(i);
-        }
-
         return mes;
     }
 
     public void addScore(Integer score, String name){
         boolean inserted = false;
-
         for (Score i : bestScores) {
             int index = bestScores.indexOf(i);
             if (score > i.getScore()) {
@@ -52,16 +48,11 @@ public class BestScore implements Serializable {
                 break;
             }
         }
-        if (!inserted&&(bestScores.size()<bestScoreLength)) {
+        if (!inserted&&(bestScores.size()<bestScoreLength)) { //in case best scores chart is not full
             bestScores.add(new Score(score, name));
         }
-        if (bestScores.size()>bestScoreLength){
+        if (bestScores.size()>bestScoreLength){ //delete last one from chart, if we insert one
             bestScores.remove(bestScores.size()-1);
         }
-
     }
-
-
-
-
 }

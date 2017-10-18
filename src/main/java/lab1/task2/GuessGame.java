@@ -8,24 +8,19 @@ import java.util.Random;
  * Created by zorka_000 on 10/9/2017.
  */
 public class GuessGame {
-
-    //public int max = 50; //max number for guess game
     public static void play(Integer max, BestScore _bestScores) {
-
         System.out.println("Starting a game from 0 to "+max.toString());
         int task = new Random().nextInt(max); //what we need to guess
-        //System.out.println(task);
         boolean guessed = false; //flag to check if guessed
         int guess;
-        int counter = 0;
+        int counter = 0; //number of tries
         String player_name;
 
         String message = "Input number from 0 to "+max.toString(); // with input dialog
         while (!guessed) {
             counter++;
             try {
-                guess = Integer.parseInt(JOptionPane.showInputDialog(message));
-                message="";
+                guess = Integer.parseInt(JOptionPane.showInputDialog(message)); //user guess
                 if (guess < task && guess>=0){
                     message="Try bigger number from 0 to "+max.toString();
                 } else if (guess > task && guess<=max){
@@ -38,7 +33,7 @@ public class GuessGame {
                     throw new Exception("Too big or too small number");
                 }
             } catch (Exception e){
-                System.out.println(e);
+                //System.out.println(e);
                 if (e.toString().equals("java.lang.NumberFormatException: null")){
                     guessed = true; //to exit the game if you close input
                 }
@@ -54,7 +49,6 @@ public class GuessGame {
     }
     public static void printBestScore() throws IOException, ClassNotFoundException {
         File file = new File("bestScore.txt");
-
         if (file.exists()){
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -77,9 +71,10 @@ public class GuessGame {
             if (o instanceof BestScore) {
                 bestScores = (BestScore) o;
             }else {
-                System.out.println("INCOMPATIBLE TYPES!");
+                System.out.println("INCOMPATIBLE TYPES for BestScore file!");
             }
         }
+        System.out.println("Best scores:");
         printBestScore();
         int max = 50;
         try {
@@ -89,11 +84,10 @@ public class GuessGame {
         }
 
         play(max, bestScores);
-        printBestScore();
         FileOutputStream fos = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(bestScores);
-
-
+        System.out.println("Best scores:");
+        printBestScore();
     }
 }
