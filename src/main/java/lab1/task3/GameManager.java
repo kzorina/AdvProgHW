@@ -9,8 +9,8 @@ public class GameManager {
        String creature1 = c1.getClass().getSimpleName();
        String creature2 = c2.getClass().getSimpleName();
        if (creature1.equals(creature2)){
-           if (creature1.equals("Elf")){
-               System.out.println("Two Elfs have equal power, they will fight forever. So in this case friendship wins");
+           if ((creature1.equals("Elf"))||(creature1.equals("Hobbit"))){
+               System.out.println("Friendship wins"); //Two Elfs have equal power, they will fight forever. Hobbits cry forever
                return;
            }
            creature1=creature1+"1";
